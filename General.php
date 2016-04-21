@@ -21,9 +21,7 @@ function clearMessage(){
 
 function printMessage(){
     global $message;
-    echo('<div class="fullscreen">');
-    echo($message);
-    echo('</div>');
+    echo ('<script>toggleVisibilityErrorMessage(\''.$message.'\');</script>');
 }
 ?>
 

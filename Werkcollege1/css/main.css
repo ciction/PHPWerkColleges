@@ -11,6 +11,14 @@
 
 
 #errorBox{
-    visibility: hidden;
+    color: black;
+}
+
+
+.visible{
+    visibility: visible;
+}
+.colapsed{
+    visibility: collapse;
 }
 

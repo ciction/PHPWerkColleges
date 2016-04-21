@@ -7,6 +7,7 @@
  */
 define("PI",pi());
 include 'meetkunde.php';
+include 'datainsettest.php';
 
 $straal = 0;
 $basis = 0;
@@ -107,7 +108,25 @@ $zijde2 = 0;
 <!--  end row-->
     </div>
 
- <?php include 'datainsettest.php'; ?>
+
+    <div class="col s6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Load data</span>
+                <form method="post">
+                    <input type="submit" name="btnLoad" value="Load" class="waves-effect waves-light btn" onclick="toggleVisibilityErrorMessage()">
+                </form>
+                <hr>
+                    <?php
+                    if (isset($_POST['btnLoad'])) {
+//                        loadUsers();
+                    }
+                    echo ('<h5>oppervlakte = ' . berekenOppervlakteDriehoek($basis,$hoogte) . '<h5>');
+                    ?>
+            </div>
+        </div>
+    </div>
+
 </div>
 </body>
 

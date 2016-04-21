@@ -9,21 +9,29 @@
 include_once '../ConnectionDAO.php';
 include_once '../General.php';
 
- $sql = "SELECT * FROM Overview";
- $result = getConnection()->query($sql);
 
-echo('<br>');
-echo($sql);
-echo('<br>');
+function loadUsers(){
+    $sql = "SELECT * FROM Overview";
+    $result = getConnection()->query($sql);
+
+    echo('<br>');
+    echo($sql);
+    echo('<br>');
 
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        addToMessage($row['Name']);
-        addToMessage('<br>');
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            addToMessage($row['Name']);
+            addToMessage('<br>');
+        }
+        printMessage();
+
     }
-//    printMessage();
+
+    getConnection()->close();
 }
 
-getConnection()->close();
+
 ?>
+
+
