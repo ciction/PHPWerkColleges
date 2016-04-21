@@ -8,26 +8,43 @@
 define("PI",pi());
 include 'meetkunde.php';
 
-
 $straal = 0;
 $basis = 0;
 $hoogte = 0;
 $zijdeV = 0;
 $zijde1 = 0;
 $zijde2 = 0;
-
-
 ?>
 
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+
+<head>
+    <!--Material CSS-->
+    <!------------------------------------------------------------------->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+    <!--Custom CSS-->
+    <!------------------------------------------------------------------->
+    <link rel="stylesheet" href="css/main.css">
+
+    <!--javascript-->
+    <!------------------------------------------------------------------->
+
+    <script src="js/main.js"></script>
+</head>
 
 
 
 
 <body>
+<div id="errorBox">
+    <h1>hello</h1>
+</div>
+
 <div class="container">
 
 
@@ -41,7 +58,7 @@ $zijde2 = 0;
                     <p>
                     <form method="post">
                         <h5>Straal:</h5>
-                        <input type="number" step="0.01" value="0" name="straal" >
+                        <input type="number" step="0.01" value="0" name="straal" title="straal" >
                         <input type="submit" name="btnCirkel"  value="bereken oppervlakte cirkel" class="waves-effect waves-light btn">
                     </form>
                     </p>
@@ -67,8 +84,8 @@ $zijde2 = 0;
                     <p>
                     <form method="post">
                         <h5>Straal:</h5>
-                        <input type="number" step="0.01" value="0" name="basis" >
-                        <input type="number" step="0.01" value="0" name="hoogte" >
+                        <input type="number" step="0.01" value="0" name="basis" title="basis">
+                        <input type="number" step="0.01" value="0" name="hoogte" title="hoogte" >
                         <input type="submit" name="btnDriehoek" value="bereken oppervlakte driehoek" class="waves-effect waves-light btn">
                     </form>
                     </p>
@@ -90,7 +107,7 @@ $zijde2 = 0;
 <!--  end row-->
     </div>
 
-
+ <?php include 'datainsettest.php'; ?>
 </div>
 </body>
 
