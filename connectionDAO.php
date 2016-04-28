@@ -1,35 +1,48 @@
-// $servername = "phpmyadmin.integration.arco.me";
-// $username = "integration005";
-// $password = "86347921";
-// $dbname = "integration005";
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Christophe
+ * Date: 4/21/2016
+ * Time: 5:25 PM
+ */
 
 
-function createConnection(){
+$servername = "dt5.ehb.be";
+$dbname = "AWD084";
+$username = "AWD084";
+$password = "35164279";
+
+
+
+function getConnection(){
     global $servername;
     global $username;
     global $password;
     global $dbname;
 
-// Create connection
-	error_reporting(E_ERROR | E_PARSE);
+
+    //create connection
     try{
         $conn = new mysqli($servername, $username, $password, $dbname);
-    }catch (Exception $e){}
-
-	
-	  return $conn;
-}
-
-
-unction createDatabase(){
-    $conn = createConnection();
-
-    $sql = "CREATE DATABASE message_wall";
-    if ($conn->query($sql) === TRUE) {
-        echo "Database created successfully";
-    } else {
-        echo "Error creating database: " . $conn->error;
+    }
+    catch (Exception $e){
     }
 
-    $conn->close();
+
+    //Check connection
+    if(isset($conn)){
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        else{
+            echo "Connected successfully";
+        }
+
+
+
+        return $conn;
+    }
+    else return 0;
 }
+
+?>
