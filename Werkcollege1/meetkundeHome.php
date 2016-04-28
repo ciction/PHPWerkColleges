@@ -28,6 +28,7 @@ $zijde2 = 0;
 
 
 <body>
+
 <div class="container">
 
 
@@ -52,8 +53,8 @@ $zijde2 = 0;
                             if (isset($_POST["straal"]) && !empty($_POST["straal"])) {
                                 $straal = $_POST["straal"];
                             }
+                            echo ('<h5>oppervlakte = ' . berekenOppervlakteCirkel($straal) . '<h5>');
                         }
-                        echo ('<h5>oppervlakte = ' . berekenOppervlakteCirkel($straal) . '<h5>');
                         ?>
                     </p>
                 </div>
@@ -80,8 +81,8 @@ $zijde2 = 0;
                                 $basis = $_POST["basis"];
                                 $hoogte = $_POST["hoogte"];
                             }
+                            echo ('<h5>oppervlakte = ' . berekenOppervlakteDriehoek($basis,$hoogte) . '<h5>');
                         }
-                        echo ('<h5>oppervlakte = ' . berekenOppervlakteDriehoek($basis,$hoogte) . '<h5>');
                         ?>
                     </p>
                 </div>
@@ -90,6 +91,9 @@ $zijde2 = 0;
 <!--  end row-->
     </div>
 
+    <p>
+        Aantal Berekeningen <?php echo($functionsExecutedCounter) ?>
+    </p>
 
 </div>
 </body>

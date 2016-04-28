@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/PHPWerkColleges.iml" filepath="$PROJECT_DIR$/.idea/PHPWerkColleges.iml" />
+      <module fileurl="file://file:Z:/../../..//Z:/public_html/PHPWerkColleges/.idea/PHPWerkColleges.iml" filepath="file:Z:/../../..//Z:/public_html/PHPWerkColleges/.idea/PHPWerkColleges.iml" />
+    </modules>
+  </component>
+</project>

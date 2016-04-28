@@ -1,0 +1,13 @@
+.hidden{
+    visibility: hidden;
+}
+
+.fillWidth{
+    width: 100%;
+}
+
+.centerContent{
+    display: block;
+    width: 50%;
+    margin: auto auto;
+}
