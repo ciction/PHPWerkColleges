@@ -1,0 +1,56 @@
+/*material css fixes*/
+.pin-top{
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+.UnderNavbarMargin{
+    height: 64px;
+}
+@media screen and (max-width: 35em) {
+    .UnderNavbarMargin{
+        height: 50px;
+    }
+}
+.parallax-container {
+    height: 520px;
+    z-index: -1;
+}
+.nav-wrapper a.active {
+    font-weight: 500;
+    padding-left: 18px;
+    border-bottom: 5px solid #ffffff;
+}
+#sidenav-overlay{
+    left: 240px !important;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.clearfixHiden{
+    visibility: hidden;
+}
+
+.modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer .btn-flat {
+    /* float: right; */
+    margin: 10px 5px;
+}
+.iconFix{
+    vertical-align: middle !important;
+    display: inline-block !important;
+}
+
+/*Nieuwe CSS*/
+.card.artist{
+    /*width: 300px;*/
+}
+
+.card.artist .time{
+    color: #039be5;
+}
+
+.boundImg{
+    height: 100%;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
