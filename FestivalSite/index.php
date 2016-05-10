@@ -1,10 +1,13 @@
 <?php
+session_start();
 require_once 'Design.html';
 require_once 'Views/loginModalView.html';
-require_once 'Views/CreateArtistModalView.html';
+require_once 'Views/CreateArtistModalView.php';
 
 
-require_once 'phpListeners.php';
+$_SESSION['homePageURL'] = $_SERVER['REQUEST_URI'];
+
+
 ?>
 
 <html lang="en">
@@ -129,5 +132,11 @@ require_once 'phpListeners.php';
 <link rel="stylesheet" href="Design/main.css">
 <!--Javascript-->
 <script src="Design/index.js"></script>
+
+<?php
+require_once 'Views/ErrorMessage.html';
+require_once 'phpListeners.php';
+?>
+
 </body>
 </html>

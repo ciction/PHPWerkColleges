@@ -17,7 +17,6 @@ function updateHtml(){
     //output
     $html = '<div class="row">';
     $_SESSION['html'] =  $html;
-
     $artists = artist::getAll();
     foreach($artists as $artist) {
         $_SESSION['html'] = $_SESSION['html'] . renderArtistData($artist->getName(),$artist->getDescription(),$artist->getImageURL(),$artist->getBeginTime(),$artist->getEndTime());

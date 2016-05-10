@@ -5,4 +5,10 @@ if(isset($_GET["addArtist"])) {
 
 }
 
+if(isset($_GET["InvalidIMG"])) {
+    echo "<script>$('#IMGError').openModal();</script>";
+}
+
+
+
 ?>

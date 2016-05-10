@@ -114,6 +114,24 @@ class artist {
         return $artistList;
     }
 
+    //get Last
+    public static function getLast(){
+        $conn = databaseManager::getConnection();
+        $IdMax = 0;
+        $query = "SELECT id FROM artists WHERE id=(SELECT max(id) FROM artists)";
+
+        if ($stmt = mysqli_prepare($conn, $query)) {
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt, $id);
+            while (mysqli_stmt_fetch($stmt)) {
+                $IdMax = $id;
+            }
+            mysqli_stmt_close($stmt);
+        }
+        return $IdMax;
+    
+    }
+
 }
 
 ?>
