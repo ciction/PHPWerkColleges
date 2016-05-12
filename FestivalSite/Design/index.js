@@ -9,15 +9,16 @@ $(document).ready(function(){
         }
     );
     $('.modal-trigger').leanModal();
+    $('#loadingDiv').hide();
 
 });
 
 
 //AJAX
-//-------------------------------------------------------
+// //-------------------------------------------------------
 
 //refresh
-var refreshIntervalinSeconds = 15;
+var refreshIntervalinSeconds = 5 ;
 $(document).ready(function() {
     $("#artists").load("Views/ArtistDataView.php");
     var refreshId = setInterval(function() {
@@ -25,28 +26,28 @@ $(document).ready(function() {
     }, refreshIntervalinSeconds * 1000);
     $.ajaxSetup({ cache: true });
 });
-
-//Upload Image
-// //todo check if admin anders bestaat de id niet
-$(document).ready(function(){
-    $('#btn_submitImage').change(function(){
-        $.ajax({
-            type: "POST",
-            url: "upload.php",
-            data: "query="+document.form.textarea.value,
-            success: function(msg){
-                document.getElementById("Div_Where_you_want_the_response").innerHTML = msg                         }
-        })
-    });
-});
-
-
+//
+// //Upload Image
+// // //todo check if admin anders bestaat de id niet
+// $(document).ready(function(){
+//     $('#btn_submitImage').change(function(){
+//         $.ajax({
+//             type: "POST",
+//             url: "upload.php",
+//             data: "query="+document.form.textarea.value,
+//             success: function(msg){
+//                 document.getElementById("Div_Where_you_want_the_response").innerHTML = msg                         }
+//         })
+//     });
+// });
+//
+//
 $(document).ready(function (e) {
     $("#uploadimage").on('submit',(function(e) {
         e.preventDefault();
         $("#message").empty();
-        $('#loading').show();
-        $.ajax({    
+        $('#loadingDiv').show();
+        $.ajax({
             url: "upload.php",         // Url to which the request is send
             type: "POST",             // Type of request to be send, called as method
             data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
@@ -56,7 +57,7 @@ $(document).ready(function (e) {
             success: function(data)   // A function to be called if request succeeds
             {
                 $('#CreateArtistModal').closeModal();
-                $('#loading').hide();
+                $('#loadingDiv').hide();
                 $("#message").html(data);
             }
         });
@@ -85,9 +86,8 @@ $(document).ready(function (e) {
     });
     function imageIsLoaded(e) {
         $("#file").css("color","green");
-        // $('#image_preview').css("display", "block");
         $('#previewing').attr('src', e.target.result);
-        // $('#previewing').attr('width', '250px');
-        // $('#previewing').attr('height', '230px');
+        $('#previewing').css("max-width", "100%");
+
     };
 });

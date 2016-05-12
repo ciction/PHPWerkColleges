@@ -2,11 +2,17 @@
 session_start();
 require_once 'ConnectionDAO.php';
 require_once 'Classes/artist.php';
+require_once 'Classes/user.php';
+$role = 'user';
+$currentUser = user::makeVisitor();
+if(isset($_SESSION['user'])) {
+    $currentUser->unserialize($_SESSION['user']);
+    $role = $currentUser->getRole();
+}
 
 $imgExtension = '';
-
 //todo generate random filename already exists mag niet gebeuren
-if(isset($_FILES["file"]["type"]))
+if(isset($_FILES["file"]["type"]) && ($role == 'SuperUser' || $role == 'admin'))
 {
     $path = "images/artists/";
     $validextensions = array("jpeg", "jpg", "png");
@@ -35,45 +41,12 @@ if(isset($_FILES["file"]["type"]))
                 $newImageName = 'artistImage' . (artist::getLast() + 1);
                 $targetPath = $path. $newImageName.$imgExtension;/*$_FILES['file']['name'];*/ // Target path where file is to be stored
                 move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
-//                echo "<span id='success'>Image Uploaded Successfully...!!</span><br/>";
-//                echo "<br/><b>File Name:</b> " . $_FILES["file"]["name"] . "<br>";
-//                echo "<b>Type:</b> " . $_FILES["file"]["type"] . "<br>";
-//                echo "<b>Size:</b> " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
-//                echo "<b>Temp file:</b> " . $_FILES["file"]["tmp_name"] . "<br>";
 
 
-                $fields = array('name', 'description', 'file', 'dateInput', 'beginTime', 'endTime');
-
-                if(isset($_POST['addArtist'])){
-                    $error = false; //No errors yet
-
-                    foreach($fields AS $fieldName) { //Loop trough each field
-                        if(!isset($_POST[$fieldName]) || empty($_POST[$fieldName])) {
-                            echo 'Field '.$fieldName.' misses!<br />'; //Display error with field
-                            $error = true; //Yup there are errors
-                        }
-                        else{
-                            $fieldName = test_input($fieldName);
-                        }
-                    }
-                    //($id,$name,$description,$imageURL,$beginTime,$endTime)
-                    $artiest = new artist()
-                    $artiest->saveToDatabase();
-                    if(!$error) { //Only create queries when no error occurs
-//Create queries....
-                    }
-                }
-
-
-
-                function test_input($data) {
-                    $data = trim($data);
-//    $data = stripslashes($data);
-                    $data = htmlspecialchars($data);
-                    return $data;
-                }
-
-
+                $id = artist::getLast() + 1;
+                $artist = new artist($id,$_POST['name'],$_POST['description'],$newImageName.$imgExtension,$_POST['beginTime'],$_POST['endTime']);
+                $artist->saveToDatabase();
+                
             }
         }
     }

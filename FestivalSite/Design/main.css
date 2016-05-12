@@ -39,6 +39,31 @@
     display: inline-block !important;
 }
 
+/*cards*/
+.container .row {
+    height: 140px;
+}
+.card .card-content {
+    height: 100%;
+}
+
+
+@media screen and (max-width: 65em) {
+    .card .card-content .card-title {
+        line-height: 40px;
+        font-size: 1.2em;
+    }
+}
+
+@media screen and (max-width: 37em) {
+    .card .card-content .card-title {
+        line-height: 40px;
+        font-size: 2.5em;
+    }
+}
+.waves-effect input[type="button"], .waves-effect input[type="reset"], .waves-effect input[type="submit"]{
+    line-height: 2.2;
+}
 /*Nieuwe CSS*/
 .card.artist{
     /*width: 300px;*/
@@ -54,3 +79,27 @@
     vertical-align: middle;
 }
 
+#darkOverlay{
+    z-index: 9999;
+    height:100%;
+    width:100%;
+    position:fixed;
+    top:0;left:0;
+    background-color: rgba(0, 0, 0, 0.62);
+}
+
+#loadingDiv{
+    /*visibility: hidden;*/
+    position: fixed;
+    z-index: 100000;
+    width: 50%;
+    height: 50%;
+    margin-left: 1%;
+    margin-top: 20%;
+
+}
+
+.align-right{
+    position: relative;
+    right: 0;
+}

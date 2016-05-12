@@ -1,7 +1,5 @@
 <?php
 
-require_once "../ConnectionDAO.php";
-
 class artist {
     private $id;
     private $name;
@@ -92,10 +90,25 @@ class artist {
     //Save
     public function saveToDatabase(){
         $conn = databaseManager::getConnection();
-        $stmt = $conn->prepare("INSERT INTO artist(name,description,imageURL,beginTime,endTime) values (?, ?, ?, ?)");
-        $stmt->bind_param($this->getName(), $this->getDescription(), $this->getImageURL(), $this->getBeginTime(),$this->getEndTime());
+        $stmt = $conn->prepare("INSERT INTO artists(name,description,imageURL,beginTime,endTime) values (?, ?, ?, ?,?)");
+        if($stmt == false) die("querry error");
+        $stmt->bind_param('sssss',$this->getName(), $this->getDescription(), $this->getImageURL(), $this->getBeginTime(),$this->getEndTime());
         $result = $stmt->execute();
     }
+
+    //Delete
+    public function deleteThisFromDatabase(){
+    $conn = databaseManager::getConnection();
+    $stmt = $conn->prepare("DELETE FROM artists WHERE id = ?");
+    $stmt->bind_param('i', $this->getId());
+    $result = $stmt->execute();
+}
+    public static function deleteFromDatabase($id){
+    $conn = databaseManager::getConnection();
+    $stmt = $conn->prepare("DELETE FROM artists WHERE id = ?");
+    $stmt->bind_param('i', $id);
+    $result = $stmt->execute();
+}
 
     //Get All
     public function getAll(){
@@ -131,6 +144,8 @@ class artist {
         return $IdMax;
     
     }
+
+
 
 }
 
