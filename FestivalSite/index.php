@@ -51,13 +51,22 @@ $_SESSION['homePageURL'] = 'http://localhost/PHPWerkColleges/FestivalSite/index.
         </div>
 
     </div>
+</div>
 
+<div class="container">
     <div id="Artists" class="section scrollspy">
         <h2>Artists</h2>
         <div  class="row" id="artists">
         </div>
     </div>
+    <div id="clear" style="clear:both;"></div>
+</div>
 
+<div class="container">
+    <div id="Contact" class="section scrollspy">
+        <h2>Contact</h2>
+        <?php require_once 'Views/ContactView.php'; ?>
+    </div>
 </div>
 
 
@@ -78,10 +87,9 @@ $_SESSION['homePageURL'] = 'http://localhost/PHPWerkColleges/FestivalSite/index.
 <script src="Design/index.js"></script>
 
 <?php
-require_once 'Views/ImageErrorMessage.html';
-require_once 'Views/LoginErrorMessage.html';
-require_once 'Views/WrongPasswordErrorMessage.html';
-require_once 'phpListeners.php';
+
+require_once 'Views/ErrorMessagesView.php';
+
 ?>
 
 </body>
