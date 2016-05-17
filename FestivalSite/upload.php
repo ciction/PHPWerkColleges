@@ -3,12 +3,7 @@ session_start();
 require_once 'ConnectionDAO.php';
 require_once 'Classes/artist.php';
 require_once 'Classes/user.php';
-$role = 'user';
-$currentUser = user::makeVisitor();
-if(isset($_SESSION['user'])) {
-    $currentUser->unserialize($_SESSION['user']);
-    $role = $currentUser->getRole();
-}
+
 
 $imgExtension = '';
 //todo generate random filename already exists mag niet gebeuren

@@ -1,4 +1,14 @@
 <?php
+//if(isset($_POST['replyBtn'])) {
+////    die("replyBtn");
+////    header('#ReactionModal');
+////        global $messageId;
+////        $messageId = $_POST['messageId'];
+////        die($messageId);
+////    echo '<script>alert("messageId");</script>';
+////
+////}
+
 
 if(isset($_GET["addArtist"])) {
     header('#CreateArtistModal');

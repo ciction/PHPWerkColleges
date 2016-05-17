@@ -1,5 +1,7 @@
 //Material CSS functies
 // + eigen fixes toegevoegd
+var messageId = 0;
+
 $(document).ready(function(){
     $('.parallax').parallax();
     $(".button-collapse").sideNav();
@@ -11,12 +13,29 @@ $(document).ready(function(){
     $('.modal-trigger').leanModal();
     $('#loadingDiv').hide();
 
+    $('.collapsible').collapsible({
+        accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    });
 });
+
+function  updatemodal(){
+    $("#ReactionModalId").val(messageId);
+    // alert($("#ReactionModalId").value);
+}
+
+function setModalIdValue(id){
+    messageId = id;
+    // $("#ReactionModalId").val(id);
+}
+
+function testAlert(){
+    alert("testAlert");
+}
 
 
 //AJAX
 // //-------------------------------------------------------
-
+var paused = false;
 //refresh
 var refreshIntervalinSeconds = 5 ;
 $(document).ready(function() {
@@ -25,7 +44,37 @@ $(document).ready(function() {
         $("#artists").load('Views/ArtistDataView.php');
     }, refreshIntervalinSeconds * 1000);
     $.ajaxSetup({ cache: true });
+
+    $("#messages").load("Views/NewsItemsView.php");
+    var refreshId = setInterval(function() {
+        if(paused) return false;
+        $("#messages").load('Views/NewsItemsView.php');
+    }, refreshIntervalinSeconds * 1000);
+    $.ajaxSetup({ cache: true });
+
+    $("#pauseAjax").click(function() {
+        alert("pause");
+        paused = !paused;
+        this.value = paused ? "Restart" : "Pause";
+    });
+
 });
+
+function pause() {
+    alert("pause");
+    paused = !paused;
+    this.value = paused ? "Restart" : "Pause";
+}
+
+
+
+$("#pauseAjax").click(function() {
+    alert("pause");
+    paused = !paused;
+    this.value = paused ? "Restart" : "Pause";
+});
+
+
 //
 // //Upload Image
 // // //todo check if admin anders bestaat de id niet

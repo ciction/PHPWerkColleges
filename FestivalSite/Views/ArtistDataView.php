@@ -12,8 +12,8 @@ if(isset($_POST['removeArtist'])) {
 
 
 $renderFirstTime = true;
-if(isset($_SESSION['html'])){
-    echo $_SESSION['html'];
+if(isset($_SESSION['htmlArtists'])){
+    echo $_SESSION['htmlArtists'];
     $renderFirstTime = false;
 }
 updateHtml();
@@ -24,17 +24,17 @@ function updateHtml(){
 
     //output
     $html = '<div class="row">';
-    $_SESSION['html'] =  $html;
+    $_SESSION['htmlArtists'] =  $html;
     $artists = artist::getAll();
     foreach($artists as $artist) {
-        $_SESSION['html'] = $_SESSION['html'] . renderArtistData($artist->getId(),$artist->getName(),$artist->getDescription(),$artist->getImageURL(),$artist->getBeginTime(),$artist->getEndTime());
+        $_SESSION['htmlArtists'] = $_SESSION['htmlArtists'] . renderArtistData($artist->getId(),$artist->getName(),$artist->getDescription(),$artist->getImageURL(),$artist->getBeginTime(),$artist->getEndTime());
     }
 
     $html = '</div>';
-    $_SESSION['html'] = $_SESSION['html'] .  $html;
+    $_SESSION['htmlArtists'] = $_SESSION['htmlArtists'] .  $html;
 
     if($renderFirstTime == true) {
-        echo $_SESSION['html'];
+        echo $_SESSION['htmlArtists'];
     }
 }
 

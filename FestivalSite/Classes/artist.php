@@ -10,7 +10,6 @@ class artist {
 
     //  Constructor
     //-----------------------------------------------------------
-
     function __construct($id,$name,$description,$imageURL,$beginTime,$endTime)
     {
         $this->id = $id;

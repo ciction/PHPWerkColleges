@@ -2,12 +2,13 @@
 session_start();
 require_once 'Design.html';
 require_once "ConnectionDAO.php";
-require_once 'Authentication.php';
 require_once 'loginModalController.php';
 require_once 'Views/CreateArtistModalView.php';
-
+require_once 'Views/MessageModalView.php';
 //$_SESSION['homePageURL'] = $_SERVER['REQUEST_URI'];
 $_SESSION['homePageURL'] = 'http://localhost/PHPWerkColleges/FestivalSite/index.php';
+echo $currentUser->getRole();
+
 
 ?>
 
@@ -57,6 +58,15 @@ $_SESSION['homePageURL'] = 'http://localhost/PHPWerkColleges/FestivalSite/index.
     <div id="Artists" class="section scrollspy">
         <h2>Artists</h2>
         <div  class="row" id="artists">
+        </div>
+    </div>
+    <div id="clear" style="clear:both;"></div>
+</div>
+
+<div class="container">
+    <div id="Messages" class="section scrollspy">
+        <h2>Messages</h2>
+        <div  class="row" id="messages">
         </div>
     </div>
     <div id="clear" style="clear:both;"></div>

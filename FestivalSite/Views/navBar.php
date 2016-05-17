@@ -1,12 +1,3 @@
-<?php
-    $currentUser = user::makeVisitor();
-    if(isset($_SESSION['user'])) {
-    $currentUser->unserialize($_SESSION['user']);
-    $role = $currentUser->getRole();
-}
-
-//function generateNavBar(){}
-?>
 
 <!--Nav bar met hamburger menu voor mobiel-->
 <!-- de Navbar zit in een pin-top wrapper dit laat de bar mee naar onder scrollen-->
@@ -22,6 +13,7 @@
                     <li><a href="#Artists">Artists</a></li>
                     <li><a href="#Tickets">Tickets</a></li>
                     <li><a href="#Map">Map</a></li>
+                    <li><a href="#Messages">Messages</a></li>
                     <li><a href="#Contact">Contact</a></li>
                     <?php if($role == 'SuperUser' || $role == 'admin'){ echo('<li><a class=\'dropdown-button\' data-beloworigin="true" href=\'#\' data-activates=\'dropdownAdmin\'>Admin<i class="material-icons iconFix">arrow_drop_down</i></a></li>');} ?>
                     <li><a class="waves-effect waves-light modal-trigger" href="#LoginModal"><i class="large material-icons">perm_identity</i></a></li>
@@ -32,6 +24,7 @@
                     <li><a href="#Artists">Artists</a></li>
                     <li><a href="#Tickets">Tickets</a></li>
                     <li><a href="#Map">Map</a></li>
+                    <li><a href="#Messages">Messages</a></li>
                     <li><a href="#Contact">Contact</a></li>
                     <?php if($role == 'SuperUser' || $role == 'admin'){ echo('<li><a class=\'dropdown-button\' data-beloworigin="true" href=\'#\' data-activates=\'dropdownAdminSmall\'>Admin<i class="material-icons iconFix">arrow_drop_down</i></a></li>');} ?>
                 </ul>
