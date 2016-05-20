@@ -25,5 +25,17 @@ if(isset($_GET["WrongPassword"])) {
     echo "<script>$('#errorModal').openModal();</script>";
 }
 
+if(isset($_GET["userAlreadyExists"])) {
+    echo "<script>$('#errorModal').openModal();</script>";
+}
+
+
+if(isset($_GET["RegisterOk"])) {
+    echo "<script>$('#errorModal').openModal();</script>";
+}
+
+
+
+
 
 ?>

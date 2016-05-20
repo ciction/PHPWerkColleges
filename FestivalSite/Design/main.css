@@ -65,6 +65,10 @@
     line-height: 2.2;
 }
 /*Nieuwe CSS*/
+
+#Home{
+    padding: 0;
+}
 .card.artist{
     /*width: 300px;*/
 }

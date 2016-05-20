@@ -85,7 +85,7 @@ class user
         $conn = databaseManager::getConnection();
         $stmt = $conn->prepare("INSERT INTO users(id,login,password,role) values (?, ?, ?, ?)");
         if ($stmt == false) die("querry error");
-        $stmt->bind_param('sssss', $this->getId(), $this->getLogin(), $this->getPassword(), $this->getRole());
+        $stmt->bind_param('ssss', $this->getId(), $this->getLogin(), $this->getPassword(), $this->getRole());
         $result = $stmt->execute();
     }
 

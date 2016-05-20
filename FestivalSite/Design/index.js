@@ -16,6 +16,10 @@ $(document).ready(function(){
     $('.collapsible').collapsible({
         accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     });
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
 });
 
 function  updatemodal(){
@@ -39,6 +43,8 @@ var paused = false;
 //refresh
 var refreshIntervalinSeconds = 5 ;
 $(document).ready(function() {
+    // $("#tickets").load("Views/BuyTicketsView.php");
+
     $("#artists").load("Views/ArtistDataView.php");
     var refreshId = setInterval(function() {
         $("#artists").load('Views/ArtistDataView.php');
@@ -58,7 +64,10 @@ $(document).ready(function() {
         this.value = paused ? "Restart" : "Pause";
     });
 
+
+
 });
+
 
 function pause() {
     alert("pause");
@@ -75,42 +84,8 @@ $("#pauseAjax").click(function() {
 });
 
 
-//
-// //Upload Image
-// // //todo check if admin anders bestaat de id niet
-// $(document).ready(function(){
-//     $('#btn_submitImage').change(function(){
-//         $.ajax({
-//             type: "POST",
-//             url: "upload.php",
-//             data: "query="+document.form.textarea.value,
-//             success: function(msg){
-//                 document.getElementById("Div_Where_you_want_the_response").innerHTML = msg                         }
-//         })
-//     });
-// });
-//
-//
-$(document).ready(function (e) {
-    $("#uploadimage").on('submit',(function(e) {
-        e.preventDefault();
-        $("#message").empty();
-        $('#loadingDiv').show();
-        $.ajax({
-            url: "upload.php",         // Url to which the request is send
-            type: "POST",             // Type of request to be send, called as method
-            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-            contentType: false,       // The content type used when sending data to the server.
-            cache: false,             // To unable request pages to be cached
-            processData:false,        // To send DOMDocument or non processed data file it is set to false
-            success: function(data)   // A function to be called if request succeeds
-            {
-                $('#CreateArtistModal').closeModal();
-                $('#loadingDiv').hide();
-                $("#message").html(data);
-            }
-        });
-    }));
+
+ $(document).ready(function (e) {
 
 // Function to preview image after validation
     $(function() {

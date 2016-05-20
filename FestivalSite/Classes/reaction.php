@@ -101,7 +101,7 @@ class reaction{
 }
 
     //Get All
-    public function getAll(){
+    public static function getAll(){
         $conn = databaseManager::getConnection();
         $reactionList = array();
         $query = "SELECT * FROM reactions";

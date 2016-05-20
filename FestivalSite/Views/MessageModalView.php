@@ -1,7 +1,7 @@
 <?php
 require_once 'CreateReaction.php';
-?>
 
+?>
 
 
 <style>
@@ -18,7 +18,7 @@ require_once 'CreateReaction.php';
         <div class="row">
             <div class="col s12 l10 offset-l1">
                 <label for="messageInput">Message:</label>
-                <textarea  cols="30" rows="5" type="text" id="messageInput" name="message" required style="resize:vertical;"></textarea>
+                <textarea class="materialize-textarea" cols="30" rows="5" type="text" id="messageInput" name="message"  required style="resize:vertical;"></textarea>
                 <input type="hidden" name="messageId" id="ReactionModalId" value="0">
             </div>
         </div>
@@ -36,15 +36,17 @@ require_once 'CreateReaction.php';
             <h5>Newsitem:</h5>
             <div class="row">
                 <div class="col s12 l10 offset-l1">
-                    <label for="titleInput">Title:</label>
-                    <input type="text" id="titleInput" name="title" required>
+                    <div class="row">
+                        <label for="titleInput">Title:</label>
+                        <input type="text" id="titleInput" name="title" length="30" required>
+                    </div>
                     <label for="messageInput">Message:</label>
-                    <textarea  cols="30" rows="5" type="text" id="messageInput" name="message" required style="resize:vertical;"></textarea>
+                    <textarea  class="materialize-textarea" cols="30" rows="5" type="text" id="messageInput" name="message" required style="resize:vertical;"></textarea>
                 </div>
             </div>
         </div>
         <div class="modal-footer" style="height: 0px">
-            <input type="submit" name="saveNewsItem" class="modal-action modal-close waves-effect waves-green btn" value="Send">
+            <input type="submit" name="saveNewsItem" class="modal-action  waves-effect waves-green btn" value="Send">
         </div>
     </form>
 </div>

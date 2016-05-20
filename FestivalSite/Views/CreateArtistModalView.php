@@ -4,6 +4,8 @@ $time = date('H:i', time());
 $nextHour= date('H:i', (time() + (60 * 60)));
 $today = date('Y-m-d');
 
+require_once 'upload.php';
+
 ?>
 
 <style>
@@ -19,7 +21,7 @@ $today = date('Y-m-d');
 </style>
 
 <div id="CreateArtistModal" class="modal">
-    <form id="uploadimage" action="upload.php" method="post" enctype="multipart/form-data">
+    <form id="uploadArtistForm"  method="post" enctype="multipart/form-data">
         <div class="modal-content">
             <h4>
                 Add Artist
@@ -49,7 +51,7 @@ $today = date('Y-m-d');
                     </div>
 
                     <label for="dateInput">Date:</label>
-                    <input type="date" id="dateInput" name="date" required value="<?php echo($today); ?>">
+                    <input type="date" class="datepicker" id="dateInput" name="date" required value="<?php echo($today); ?>">
                     <label for="beginTimeInput">Begin Time:</label>
                     <input type="time" id="beginTimeInput" name="beginTime" required value="<?php echo($time); ?>">
                     <label for="endTimeInput">End Time:</label>

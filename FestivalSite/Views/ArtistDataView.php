@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 require_once '../ConnectionDAO.php';
 require_once '../Classes/artist.php';
 
@@ -11,11 +11,11 @@ if(isset($_POST['removeArtist'])) {
 }
 
 
-$renderFirstTime = true;
-if(isset($_SESSION['htmlArtists'])){
-    echo $_SESSION['htmlArtists'];
-    $renderFirstTime = false;
-}
+//$renderFirstTime = true;
+//if(isset($_SESSION['htmlArtists'])){
+//    echo $_SESSION['htmlArtists'];
+//    $renderFirstTime = false;
+//}
 updateHtml();
 
 
@@ -24,18 +24,20 @@ function updateHtml(){
 
     //output
     $html = '<div class="row">';
-    $_SESSION['htmlArtists'] =  $html;
+//    $_SESSION['htmlArtists'] =  $html;
     $artists = artist::getAll();
     foreach($artists as $artist) {
-        $_SESSION['htmlArtists'] = $_SESSION['htmlArtists'] . renderArtistData($artist->getId(),$artist->getName(),$artist->getDescription(),$artist->getImageURL(),$artist->getBeginTime(),$artist->getEndTime());
+//        $_SESSION['htmlArtists'] = $_SESSION['htmlArtists'] . renderArtistData($artist->getId(),$artist->getName(),$artist->getDescription(),$artist->getImageURL(),$artist->getBeginTime(),$artist->getEndTime());
+        $html = $html . renderArtistData($artist->getId(),$artist->getName(),$artist->getDescription(),$artist->getImageURL(),$artist->getBeginTime(),$artist->getEndTime());
     }
 
-    $html = '</div>';
-    $_SESSION['htmlArtists'] = $_SESSION['htmlArtists'] .  $html;
+    $html = $html . '</div>';
+//    $_SESSION['htmlArtists'] = $_SESSION['htmlArtists'] .  $html;
 
-    if($renderFirstTime == true) {
-        echo $_SESSION['htmlArtists'];
-    }
+//    if($renderFirstTime == true) {
+//        echo $_SESSION['htmlArtists'];
+//    }
+    echo $html;
 }
 
 

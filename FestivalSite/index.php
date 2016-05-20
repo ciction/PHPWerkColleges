@@ -1,13 +1,17 @@
 <?php
 session_start();
+require_once 'AntiXSS.php';
 require_once 'Design.html';
 require_once "ConnectionDAO.php";
 require_once 'loginModalController.php';
+
 require_once 'Views/CreateArtistModalView.php';
 require_once 'Views/MessageModalView.php';
 //$_SESSION['homePageURL'] = $_SERVER['REQUEST_URI'];
 $_SESSION['homePageURL'] = 'http://localhost/PHPWerkColleges/FestivalSite/index.php';
-echo $currentUser->getRole();
+unset($_SESSION['bought']);
+//$role = $currentUser->getRole();
+//echo $currentUser->getRole();
 
 
 ?>
@@ -64,6 +68,18 @@ echo $currentUser->getRole();
 </div>
 
 <div class="container">
+    <div id="Tickets" class="section scrollspy">
+        <h2>Tickets</h2>
+        <div  class="row" id="tickets">
+            <?php require_once 'Views/BuyTicketsView.php'; ?>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
     <div id="Messages" class="section scrollspy">
         <h2>Messages</h2>
         <div  class="row" id="messages">
@@ -95,6 +111,7 @@ echo $currentUser->getRole();
 <link rel="stylesheet" href="Design/main.css">
 <!--Javascript-->
 <script src="Design/index.js"></script>
+<script src="Design/tickets.js"></script>
 
 <?php
 

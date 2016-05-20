@@ -2,16 +2,26 @@
 require_once 'Classes/error.php';
 $errorMessage = new ErrorMessage();
 
-
 if(isset($_GET["InvalidIMG"])) {
-    $errorMessage = new ErrorMessage("Image Error:","Invalid file Size or Type <br> The image should be jpeg/jpg/png smaller then 600kb try again");
+    $errorMessage = new ErrorMessage("<i class=\"material-icons\">error</i> Image Error:","Invalid file Size or Type <br> The image should be jpeg/jpg/png smaller then 600kb try again");
 }
 if(isset($_GET["InvalidLogin"])) {
-        $errorMessage = new ErrorMessage("Login Error:","This login does not exist");
+        $errorMessage = new ErrorMessage("<i class=\"material-icons\">error</i> Login Error:","This login does not exist");
 }
 if(isset($_GET["WrongPassword"])) {
-    $errorMessage = new ErrorMessage("Login Error:","wrong password");
+    $errorMessage = new ErrorMessage("<i class=\"material-icons\">error</i> Login Error:","wrong password");
 }
+if(isset($_GET["userAlreadyExists"])) {
+    $errorMessage = new ErrorMessage("<i class=\"material-icons\">error</i> Register Error:","sorry this username already exists.");
+}
+if(isset($_GET["userExists"])) {
+    $errorMessage = new ErrorMessage("<i class=\"material-icons\">error</i> Register Error:","sorry this username already exists.");
+}
+if(isset($_GET["RegisterOk"])) {
+    $errorMessage = new ErrorMessage("<i class=\"material-icons\">tag_faces</i> Registerd:","Your useraccount was succesfully created.");
+}
+
+
 
 ?>
 
@@ -25,8 +35,6 @@ if(isset($_GET["WrongPassword"])) {
         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
     </div>
 </div>
-
-
 
 
 

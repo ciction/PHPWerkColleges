@@ -6,19 +6,29 @@ require_once '../Classes/message.php';
 require_once '../Classes/reaction.php';
 require_once '../loginModalController.php';
 
+$currentUser->unserialize($_SESSION['user']);
+$role = $currentUser->getRole();
 
 $colors = array("blue", "teal", "amber", "deep-orange", "orange","indigo", "blue-grey" );
 //$rand_color = array_rand($colors);
 $currentColor = 0;
 
 
-$renderFirstTime = true;
-if(isset($_SESSION['htmlNews'])){
-    echo $_SESSION['htmlNews'];
-    $renderFirstTime = false;
-}
+//$renderFirstTime = true;
+//if(isset($_SESSION['htmlNews'])){
+//    echo $_SESSION['htmlNews'];
+//    $renderFirstTime = false;
+//}
 
+$allReactions = reaction::getAll();
 updateHtml();
+
+//foreach($allReactions as $reaction) {
+//    if($reaction->getParentMessage() == 1){
+//        echo renderReactionData($reaction->getId(),$reaction->getTitle(),$reaction->getDate(),$reaction->getText(),$currentColor);
+//    }
+//
+//}
 ?>
 
 
@@ -28,8 +38,11 @@ function updateHtml(){
     global $renderFirstTime;
     global $colors;
     global $currentColor;
+    global $allReactions;
     //output
     $messages = message::getAll();
+
+
     $html = '';
     foreach($messages as $message) {
         $html = $html . renderMessageData($message->getId(),$message->getTitle(),$message->getDate(),$message->getText());
@@ -37,11 +50,12 @@ function updateHtml(){
         ++$currentColor;
         if($currentColor >= count($colors)){$currentColor = 0;};
     }
-    $_SESSION['htmlNews'] = $html;
+//    $_SESSION['htmlNews'] = $html;
 
-    if($renderFirstTime == true) {
-        echo $html;
-    }
+//    if($renderFirstTime == true) {
+//        echo $html;
+//    }
+    echo $html;
 
 }
 
@@ -49,6 +63,8 @@ function updateHtml(){
 function renderMessageData($id, $title, $date, $text){
     global $colors;
     global $currentColor;
+    global $allReactions;
+
     $html =
         '<div class="row">
             <div class="col s12">
@@ -64,9 +80,11 @@ function renderMessageData($id, $title, $date, $text){
         </div>';
 
 
-    $reactions = reaction::getByMessage($id);
-    foreach($reactions as $reaction) {
-        $html = $html . renderReactionData($reaction->getId(),$reaction->getTitle(),$reaction->getDate(),$reaction->getText(),$currentColor);
+//    $reactions = reaction::getByMessage($id);
+    foreach($allReactions as $reaction) {
+        if($reaction->getParentMessage() == $id){
+            $html = $html . renderReactionData($reaction->getId(),$reaction->getTitle(),$reaction->getDate(),$reaction->getText(),$currentColor);
+        }
     }
     $html = $html .'</div>';
     return $html;
@@ -92,9 +110,10 @@ function renderReplyButton($id){
     global $colors;
     global $currentColor;
     global $role;
+    
 
     $html = '';
-    if($role == 'user') {
+    if($role != 'visitor') {
         $html = '
             <form action="index.php" method="post">
                 <div style="width: 100%; text-align: right;">
@@ -137,10 +156,8 @@ if($role == 'SuperUser' || $role == 'admin'){
     });
 
 
-    $("#pauseAjax").click(function() {
-        alert("pause");
-        paused = !paused;
-        this.value = paused ? "Restart" : "Pause";
+    $(".pauseAjax").click(function() {
+        pause();
     });
 
 </script>
