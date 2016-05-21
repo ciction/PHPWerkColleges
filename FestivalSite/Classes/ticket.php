@@ -20,17 +20,16 @@ class Ticket{
    public static $adultPrice = 50;
    public static $adultCount = 1000;
 
-//    public static function updateStatics($type){
-//        switch ($type){
-//            case TicketType::adultTicket: -- self::$adultCount;
-//                break;
-//            case TicketType::juniorTicket: -- self::$juniorCount;
-//                break;
-//            case TicketType::seniorTicket: -- self::$seniorCount;
-//                break;
-//                break;
-//        }
-//    }
+    public static function updateStaticTicketCount($type){
+        switch ($type){
+            case TicketType::adultTicket: -- self::$adultCount;
+                break;
+            case TicketType::juniorTicket: -- self::$juniorCount;
+                break;
+            case TicketType::seniorTicket: -- self::$seniorCount;
+                break;
+        }
+    }
 
     public static function updatePrice($id){
         $conn = databaseManager::getConnection();
@@ -110,7 +109,7 @@ class Ticket{
         $result = $stmt->execute();
 
         mysqli_stmt_close($stmt);
-//        self::updateStatics($this->getType());
+        self::updateStaticTicketCount($this->getType());
     }
 
     public static function saveAllToDatabase($ticketArray){
@@ -124,7 +123,7 @@ class Ticket{
             $type = $ticket->getType();
             $owner = $ticket->getOwner();
             $stmt->execute();
-//            self::updateStatics($type);
+            self::updateStaticTicketCount($type);
         }
 
         $stmt->close();
@@ -214,7 +213,63 @@ class Ticket{
     
     }
 
-    function __toString()
+    public static function pullSyncTicketInfo(){
+        $conn = databaseManager::getConnection();
+        $query = "SELECT * From tickets";
+
+
+        if ($stmt = mysqli_prepare($conn, $query)) {
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt, $id, $count, $price);
+            while (mysqli_stmt_fetch($stmt)) {
+                switch ($id){
+                    case TicketType::adultTicket:
+                        self::$adultCount = $count;
+                        self::$adultPrice = $price;
+                        break;
+                    case TicketType::juniorTicket:
+                        self::$juniorCount = $count;
+                        self::$juniorPrice = $price;
+                        break;
+                    case TicketType::seniorTicket:
+                        self::$seniorCount = $count;
+                        self::$seniorPrice = $price;
+                        break;
+                }
+            }
+        }
+            mysqli_stmt_close($stmt);
+    }
+
+    public static function pushSyncTicketCount(){
+        $conn = databaseManager::getConnection();
+
+        $count ='';
+        $id ='';
+        $query =  $conn->prepare("UPDATE tickets SET count=? WHERE id=?");
+        if($query == false) die("querry error");
+        $query->bind_param('is', $count, $id);
+
+        $count = self::$juniorCount;
+        $id = TicketType::juniorTicket;
+        $query->execute();
+
+        $count = self::$adultCount;
+        $id = TicketType::adultTicket;
+        $query->execute();
+
+        $count = self::$seniorCount;
+        $id = TicketType::seniorTicket;
+        $query->execute();
+    }
+
+
+
+
+
+
+
+function __toString()
     {
         $array = array(
             'id' => $this->id,
